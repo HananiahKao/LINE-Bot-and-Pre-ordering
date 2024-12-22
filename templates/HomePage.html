@@ -1,0 +1,29 @@
+<html>
+    <head>
+        {% load static %}
+        <title>
+            Home
+        </title>
+        <!--<link href="{% static "HomePageStyle.css" %}" rel="stylesheet"/>-->
+        <style>
+            h1 {
+                font-size:120px;
+            }
+            img {
+                height:120px;
+                border-radius:30px;
+            }
+            div {
+                background-color:red
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img src="{% static "icon.webp" %}" atl="icon image..."/>
+            <h1>
+            Welcome!!{{viewerName}}
+            </h1>
+        </div>
+    </body>
+</html>

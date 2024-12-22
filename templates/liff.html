@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預購</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+    <script>
+        (function() {
+            liff.init({
+                liffId: '2006681612-1ZmrzVWm',
+                withLoginOnExternalBrowser: true,
+            }).then(() => {
+                print('LIFF Initialization Succeeded');
+            }).catch((err) => {
+                alert('LIFF Initialization Failed'+ err);
+            });
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            }
+        })();
+    </script>
+    <h1>預購</h1>
+    <form id="preorderForm" onsubmit="sendMessage(event)">
+        <!-- Select Box for 口味 -->
+        <label for="flavor">口味:</label>
+        <select id="flavor" name="flavor">
+            <option value="Origin">原味</option>
+            <option value="passion_fruit">百香果</option>
+            <option value="lemon">檸檬</option>
+            <option value="earl_gray_tea">伯爵</option>
+        </select>
+        <br><br>
+
+        <!-- Text Field for Children's Name -->
+        <label for="childName">請輸入學童姓名</label>
+        <input type="text" id="childName" name="childName" placeholder="王小明" required>
+        <br><br>
+
+        <!-- Input Field for Number of Products -->
+        <label for="quantity">数量（條）</label>
+        <input type="number" id="quantity" name="quantity" min="1" placeholder="輸入購買數量" required>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">預購</button>
+    </form>
+
+    <script>
+        // Initialize LIFF App on Page Load
+
+        document.addEventListener("DOMContentLoaded",function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selected = urlParams.get('selected');
+            const decodedSelected = decodeURIComponent(selected);
+            const options = document.getElementsByTagName('option')
+            const filtered = Array.from(options).filter(element => element.textContent==decodedSelected);
+            filtered[0].selected=true;
+        });
+
+
+        // Collect Form Data and Send Message
+        function sendMessage(event) {
+            event.preventDefault(); // Prevent form submission refresh;
+            const childName = document.getElementById("childName").value;
+            const quantity = document.getElementById("quantity").value;
+            const flavorStr = document.getElementById("flavor").value;
+            const flavor = document.querySelector("select > option[value='"+flavorStr+"']").textContent;
+            const messageText = childName+'+'+quantity+'('+flavor+')';
+            // Use liff.sendMessages to Send Collected Data
+                liff.sendMessages([{
+                    type: "text",
+                    text: messageText
+                }]).catch((err) => {
+                    alert("訊息發送失敗"+err);
+                });
+                liff.closeWindow()
+        }
+    </script>
+</body>
+</html>
