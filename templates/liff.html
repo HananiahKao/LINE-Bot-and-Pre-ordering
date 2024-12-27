@@ -8,29 +8,27 @@
 </head>
 <body>
     <script>
-        (function() {
-            liff.init({
-                liffId: '2006681612-1ZmrzVWm',
-                withLoginOnExternalBrowser: true,
-            }).then(() => {
-                print('LIFF Initialization Succeeded');
-            }).catch((err) => {
-                alert('LIFF Initialization Failed'+ err);
-            });
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            }
-        })();
+        liff.init({
+            liffId: '2006681612-1ZmrzVWm',
+            withLoginOnExternalBrowser: true,
+        }).then(() => {
+            print('LIFF Initialization Succeeded');
+        }).catch((err) => {
+            alert('LIFF Initialization Failed'+ err);
+        });
+        if (!liff.isLoggedIn()) {
+            liff.login();
+        }
     </script>
     <h1>預購</h1>
     <form id="preorderForm" onsubmit="sendMessage(event)">
         <!-- Select Box for 口味 -->
         <label for="flavor">口味:</label>
         <select id="flavor" name="flavor">
-            <option value="Origin">原味</option>
-            <option value="passion_fruit">百香果</option>
-            <option value="lemon">檸檬</option>
-            <option value="earl_gray_tea">伯爵</option>
+            <option {% if selected == '原味' %}selected{% endif %} value="Origin">原味</option>
+            <option {% if selected == '百香果' %}selected{% endif %} value="passion_fruit">百香果</option>
+            <option {% if selected == '檸檬' %}selected{% endif %} value="lemon">檸檬</option>
+            <option {% if selected == '伯爵' %}selected{% endif %} value="earl_gray_tea">伯爵</option>
         </select>
         <br><br>
 
@@ -48,19 +46,7 @@
         <button type="submit">預購</button>
     </form>
 
-    <script>
-        // Initialize LIFF App on Page Load
-
-        document.addEventListener("DOMContentLoaded",function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const selected = urlParams.get('selected');
-            const decodedSelected = decodeURIComponent(selected);
-            const options = document.getElementsByTagName('option')
-            const filtered = Array.from(options).filter(element => element.textContent==decodedSelected);
-            filtered[0].selected=true;
-        });
-
-
+<script>
         // Collect Form Data and Send Message
         function sendMessage(event) {
             event.preventDefault(); // Prevent form submission refresh;
