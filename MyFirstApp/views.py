@@ -17,3 +17,7 @@ def liffPage(request):
         selected = unquote(state[state.index('=')+1:])
     response = render(request, "liff.html", locals())
     return response
+
+def healthCheck(request):
+    print("I'm still alive!")
+    return HttpResponse("I'm still alive!")
