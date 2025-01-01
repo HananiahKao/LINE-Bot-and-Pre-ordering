@@ -1,4 +1,5 @@
  [build] 
  command = "./build.sh"
  publish = "/staticfiles"
+ ignore = "return 0"
 
