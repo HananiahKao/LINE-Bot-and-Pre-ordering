@@ -2,4 +2,7 @@
  command = "./build.sh"
  publish = "/staticfiles"
  ignore = "return 0"
+ [[redirects]]
+  from = "/"
+  to = "/HomePage.html"
 
