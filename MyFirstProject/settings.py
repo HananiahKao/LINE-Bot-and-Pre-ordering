@@ -76,10 +76,6 @@ WSGI_APPLICATION = 'MyFirstProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-print(dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600))
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.

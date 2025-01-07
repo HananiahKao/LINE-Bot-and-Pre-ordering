@@ -1,7 +1,3 @@
-#
-# This file is part of gunicorn released under the MIT license.
-# See the NOTICE for more information.
-
 import io
 import os
 import signal
@@ -29,9 +25,9 @@ from gunicorn.workers.workertmp import WorkerTmp
 
 class Worker:
 
-    SIGNALS = [getattr(signal, "SIG%s" % x) for x in (
-        "ABRT HUP QUIT INT TERM USR1 USR2 WINCH CHLD".split()
-    )]
+#    SIGNALS = [getattr(signal, "SIG%s" % x) for x in (
+#        "ABRT HUP QUIT INT TERM USR1 USR2 WINCH CHLD".split()
+#    )]
 
     PIPE = []
 
@@ -116,7 +112,7 @@ class Worker:
 
         self.log.close_on_exec()
 
-        self.init_signals()
+        #self.init_signals()
 
         # start the reloader
         if self.cfg.reload:
@@ -168,13 +164,12 @@ class Worker:
     def init_signals(self):
         # reset signaling
         for s in self.SIGNALS:
-            print(s)
             signal.signal(s, signal.SIG_DFL)
         # init new signaling
-        #signal.signal(signal.SIGQUIT, self.handle_quit)
-        #signal.signal(signal.SIGTERM, self.handle_exit)
-        #signal.signal(signal.SIGINT, self.handle_quit)
-        #signal.signal(signal.SIGWINCH, self.handle_winch)
+        signal.signal(signal.SIGQUIT, self.handle_quit)
+        signal.signal(signal.SIGTERM, self.handle_exit)
+        signal.signal(signal.SIGINT, self.handle_quit)
+        signal.signal(signal.SIGWINCH, self.handle_winch)
         signal.signal(signal.SIGUSR1, self.handle_usr1)
         signal.signal(signal.SIGABRT, self.handle_abort)
 

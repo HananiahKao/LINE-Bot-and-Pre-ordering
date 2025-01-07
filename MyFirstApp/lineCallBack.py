@@ -29,5 +29,5 @@ def callBack(request):
 def handle_message(event):
     if event.message.text.endswith('tapping'):
         message_to_send=createMessage()
-        line_bot_api.reply_message(event.reply_token,message_to_send)
+        line_bot_api.push_message(event.source.userId,message_to_send)
 
