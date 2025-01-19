@@ -3,6 +3,14 @@
 set -o errexit
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
+brew install watchman
+watchman watch ./database/
+watchman -j <<-EOT
+["trigger", "./database", {
+  "name": "test",
+  "command": ["./commitDB.sh"]
+}]
+EOT
 pip install -r requirements.txt
 
 # Convert static asset files
