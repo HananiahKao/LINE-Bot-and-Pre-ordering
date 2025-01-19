@@ -5,7 +5,7 @@ set -o errexit
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-
+brew update
 brew install watchman
 watchman watch ./database/
 watchman -j <<-EOT
