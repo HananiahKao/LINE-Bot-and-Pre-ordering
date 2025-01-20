@@ -3,7 +3,12 @@
 set -o errexit
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+git clone https://github.com/Homebrew/brew homebrew
+eval "$(homebrew/bin/brew shellenv)"
+brew update --force
+chmod -R go-w "$(brew --prefix)/share/zsh"
+
+brew upgrade
 
 brew update
 brew install watchman
