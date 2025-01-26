@@ -24,6 +24,6 @@ urlpatterns = [
     path('',HomePage),
     path('callback',callBack),
     path('pre-odering',liffPage),
-    path('health-check',healthCheck)
+    path('health-check',healthCheck),
     path('runcommand',runCommand)
 ]
