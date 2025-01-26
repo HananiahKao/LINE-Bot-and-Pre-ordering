@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from urllib.parse import unquote
 from django.shortcuts import render
 import os
+from requests import get
 
 # Create your views here.
 def HomePage(request):
@@ -19,6 +20,7 @@ def liffPage(request):
     return response
 
 def healthCheck(request):
+    get('https://mysite-6c9q.onrender.com')
     print("I'm still alive!")
     return HttpResponse("I'm still alive!")
 
