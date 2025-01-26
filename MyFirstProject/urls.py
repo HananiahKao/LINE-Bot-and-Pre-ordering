@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from MyFirstApp.lineCallBack import callBack
-from MyFirstApp.views import HomePage ,liffPage,healthCheck
+from MyFirstApp.views import HomePage ,liffPage,healthCheck, runCommand
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('callback',callBack),
     path('pre-odering',liffPage),
     path('health-check',healthCheck)
+    path('runcommand',runCommand)
 ]
