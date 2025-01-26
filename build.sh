@@ -9,7 +9,7 @@ brew update --force
 chmod -R go-w "$(brew --prefix)/share/zsh"
 
 brew upgrade
-
+brew install python@3.13 --verbose
 brew update
 brew install watchman
 watchman watch ./database/
