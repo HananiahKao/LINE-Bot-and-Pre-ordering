@@ -19,6 +19,7 @@ set -o errexit
  # "command": ["./commitDB.sh"]
 #}]
 #EOT
+git clone https://github.com/HananiahKao/Database.git database
 pip install -r requirements.txt
 
 # Convert static asset files
