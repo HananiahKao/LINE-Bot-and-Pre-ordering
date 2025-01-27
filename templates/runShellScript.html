@@ -54,7 +54,7 @@
                 if (event.key === 'Enter' && commandInput.value.trim()) {
                     const command = commandInput.value;
                     commandInput.value = '';
-
+                    commandInput.style.display = 'none'
                     // Display the entered command in the terminal
                     const userCommand = document.createElement('p');
                     userCommand.className = 'output';
@@ -68,6 +68,7 @@
                         source.onmessage = function (event) {
                             console.log(event.data)
                             if (event.data == "Process-ended") {
+                                commandInput.style.display = 'inline-block'
                                 source.close();
                                 return
                             }
