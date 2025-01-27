@@ -14,12 +14,11 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
-                height: 100vh;
+                height: 100dvh;
                 overflow: hidden;
             }
             .terminal {
                 padding: 10px;
-                height: window.innerHeight;
                 overflow-y: auto;
                 outline: none;
                 cursor: text;
@@ -50,9 +49,6 @@
             const outputContainer = document.getElementById('output-container');
 
             // Handle input submission
-            window.addEventListener('resize',function () {
-                document.querySelector('.terminal').style.height = `${window.innerHeight}px`
-            });
             commandInput.addEventListener('keypress', async (event) => {
                 if (event.key === 'Enter' && commandInput.value.trim()) {
                     const command = commandInput.value;
