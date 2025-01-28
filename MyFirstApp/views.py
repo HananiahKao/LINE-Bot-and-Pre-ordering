@@ -57,7 +57,7 @@ def runShell(request):
                 if output:
                     yield f"data: {output}\n\n"
                 stderr = process.stderr.read()
-                if stderr:
+                if stderr and output == '':
                     yield f"data: Error: {stderr}\n\n"
                 if output == '' and process.poll() is not None:
                     yield "data: Process-ended\n\n"
