@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # Exit on error
 set -o errexit
-pwd
-
 
 git clone https://github.com/Homebrew/brew homebrew
 eval "$(homebrew/bin/brew shellenv)"
+echo $(homebrew/bin/brew shellenv)>>~/.bash_profile
 brew update --force
 chmod -R go-w "$(brew --prefix)/share/zsh"
 
