@@ -19,7 +19,9 @@ chmod -R go-w "$(brew --prefix)/share/zsh"
  # "command": ["./commitDB.sh"]
 #}]
 #EOT
-git clone https://github.com/HananiahKao/Database.git database
+git clone https://HananiahKao:$GITHUB_ACCESS_TOKEN@github.com/HananiahKao/Database.git database
+git config --global user.email "HananiahKao@users.noreply.github.com"
+git config --global user.name "HananiahKao"
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip install -r requirements.txt

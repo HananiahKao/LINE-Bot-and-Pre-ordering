@@ -75,5 +75,10 @@ class DBManager:
             index = index + 1
         self.dbpath.write_text("".join(lines))
 
+    def commit(self):
+        import subprocess
+        process = subprocess.run('cd database;./commitDB.sh', capture_output=True, text=True, shell=True)
+        print(process.stdout)
+
 
 
