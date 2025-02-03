@@ -28,6 +28,7 @@ class DBManager:
                         found = True
                 index = index + 1
             self.dbpath.write_text("".join(lines))
+            self.commit()
 
 
     def key_exists(self,key):
@@ -74,6 +75,7 @@ class DBManager:
                 break
             index = index + 1
         self.dbpath.write_text("".join(lines))
+        self.commit()
 
     def commit(self):
         import subprocess
