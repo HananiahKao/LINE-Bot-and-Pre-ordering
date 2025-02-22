@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shell Terminal</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: monospace;
+                background-color: black;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                height: 100dvh;
+                overflow: hidden;
+            }
+            .terminal {
+                padding: 10px;
+                overflow-y: auto;
+                outline: none;
+                cursor: text;
+            }
+            .terminal-input {
+                display: inline-block;
+                width: 100%;
+                border: none;
+                background: none;
+                color: white;
+                font-family: inherit;
+                font-size: 1em;
+                caret-color: white;
+            }
+            .output {
+                white-space: pre-wrap;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="terminal" tabindex="0">
+            <div id="output-container"></div>
+            <input id="command-input" class="terminal-input" autofocus placeholder="Enter Shell command..." autocapitalize="none">
+        </div>
+        <script>
+            const commandInput = document.getElementById('command-input');
+            const outputContainer = document.getElementById('output-container');
+
+            // Handle input submission
+            commandInput.addEventListener('keypress', async (event) => {
+                if (event.key === 'Enter' && commandInput.value.trim()) {
+                    const command = commandInput.value;
+                    commandInput.value = '';
+                    commandInput.style.display = 'none'
+                    // Display the entered command in the terminal
+                    const userCommand = document.createElement('p');
+                    userCommand.className = 'output';
+                    userCommand.textContent = `$ ${command}`;
+                    outputContainer.appendChild(userCommand);
+
+                    // Send the command to the server
+                    try {
+                        const source = new EventSource(`/run-shell-script?command=${command}`);
+                        source.onmessage = function (event) {
+                            console.log(event.data)
+                            if (event.data == "Process-ended") {
+                                commandInput.style.display = 'inline-block'
+                                source.close();
+                                return
+                            }
+                            const commandOutput = document.createElement('p');
+                            commandOutput.className = 'output';
+                            commandOutput.textContent = event.data;
+                            outputContainer.appendChild(commandOutput);
+                        }
+                    } catch (error) {
+                        const errorOutput = document.createElement('p');
+                        errorOutput.className = 'output';
+                        errorOutput.textContent = `Error: ${error.message}`;
+                        outputContainer.appendChild(errorOutput);
+                    }
+
+                    // Scroll to the bottom of the terminal
+                    outputContainer.scrollTop = outputContainer.scrollHeight;
+                }
+            });
+        </script>
+    </body>
+</html>
