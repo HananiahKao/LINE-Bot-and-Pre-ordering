@@ -4,7 +4,6 @@ import os
 
 class DBManager:
     dbpath = Path(__file__).resolve().parent/'database'/'database.txt'
-    default = DBManager()
     def write_value(self,key,value):
         if not self.dbpath.read_text() == '' and not key == '' and not self.key_exists(key):
             content = self.dbpath.read_text()
