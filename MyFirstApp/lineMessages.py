@@ -54,5 +54,5 @@ template=CarouselTemplate(
 
 
 def textMessage(errorMessage):
-    message_to_send = TextSendMessage(text: f'{errorMessage}')
+    message_to_send = TextSendMessage(f'{errorMessage}')
     return message_to_send
