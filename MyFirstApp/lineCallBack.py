@@ -1,4 +1,3 @@
-from MyFirstApp.lineMessages import createMessage
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -27,7 +26,12 @@ def callBack(request):
     return HttpResponse()
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text.endswith('tapping'):
-        message_to_send=createMessage()
-        line_bot_api.push_message(event.source.user_id,message_to_send)
+    from MyFirstApp.lineMessages import createMessage, textMessage
+    from DatabaseManager import DBManager
+    if event.message.text == '將此群組設為管理者群組':
+        if event.source.type == 'group':
+            DBManager().write_value('admin_group_id', event.source.group_id)
+            line_bot_api.push_message(event.source.group_id,textMessage('已將此群組設為管理者群組！'))
+        else:
+            line_bot_api.push_message(event.source.user_id,textMessage('這裡不是一個群組！'))
 
