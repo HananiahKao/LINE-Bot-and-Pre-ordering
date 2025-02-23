@@ -1,5 +1,5 @@
 #TextSendMessage, MessageEvent, TextMessage, StickerSendMessage, ImageSendMessage, QuickReply, QuickReplyButton, MessageAction, ButtonsTemplate,
-from linebot.models import TemplateSendMessage, URITemplateAction, CarouselTemplate, CarouselColumn
+from linebot.models import TemplateSendMessage, URITemplateAction, CarouselTemplate, CarouselColumn, TextSendMessage
 def createMessage():
         message_to_send=TemplateSendMessage(
 alt_text='Carousel template...',
@@ -51,3 +51,8 @@ template=CarouselTemplate(
                 ),
                 ]))
         return message_to_send
+
+
+def textMessage(errorMessage):
+    message_to_send = TextSendMessage(text: f'{errorMessage}')
+    return message_to_send
