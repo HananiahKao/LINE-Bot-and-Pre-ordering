@@ -70,9 +70,7 @@
                                 source.close();
                                 return
                             }
-                            function(event) {
-                                outputContainer.innerHTML += event.data + "<br>";
-                            };
+                            outputContainer.innerHTML += event.data + "<br>";
                         }
                     } catch (error) {
                         const errorOutput = document.createElement('p');
