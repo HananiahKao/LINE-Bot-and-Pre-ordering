@@ -25,7 +25,7 @@ def liffPage(request):
     return response
 
 def healthCheck(request):
-    get('https://mysite-6c9q.onrender.com')
+    get('https://the-pound-of-the-little-frogy.onrender.com')
     print("I'm still alive!")
     return HttpResponse("I'm still alive!")
 
