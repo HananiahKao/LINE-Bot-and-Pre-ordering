@@ -35,7 +35,6 @@ def runShell(request):
         command = request.GET.get('command', '')
 
         # Run the Shell script command
-        process = subprocess.Popen(command.strip(), shell=True, cwd=manager.read_value('cwd',os.path.expanduser("~")), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         if command.startswith("cd"):
             parts = command.split(maxsplit=1)
             if len(parts) > 1:
@@ -49,7 +48,7 @@ def runShell(request):
                 manager.write_value('cwd',new_cwd.replace('\\ ',' '))
 
             # Return the output and errors
-        def checkOutput():
+        def checkOutput(process):
             # Yield each line of stdout as it becomes available
             while True:
             # Capture any errors
@@ -62,8 +61,9 @@ def runShell(request):
                 if output == '' and stderr == '' and process.poll() is not None:
                     yield "data: Process-ended\n\n"
                     break
-
-        return HttpResponse(checkOutput(), content_type='text/event-stream')
+        # Run the Shell script command
+        process = subprocess.Popen(command.strip(), shell=True, cwd=manager.read_value('cwd',os.path.expanduser("~")), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        return HttpResponse(checkOutput(process), content_type='text/event-stream')
     except Exception as e:
         def error_event():
             yield f"data: Error: {str(e)}\n\n"
