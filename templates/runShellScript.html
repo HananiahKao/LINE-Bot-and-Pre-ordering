@@ -70,10 +70,9 @@
                                 source.close();
                                 return
                             }
-                            const commandOutput = document.createElement('p');
-                            commandOutput.className = 'output';
-                            commandOutput.textContent = event.data;
-                            outputContainer.appendChild(commandOutput);
+                            function(event) {
+                                outputContainer.innerHTML += event.data + "<br>";
+                            };
                         }
                     } catch (error) {
                         const errorOutput = document.createElement('p');
