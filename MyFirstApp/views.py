@@ -11,9 +11,7 @@ from DatabaseManager import DBManager
 
 # Create your views here.
 def HomePage(request):
-    viewerName="Hananiah"
-    response = render(request, "HomePage.html", locals())
-    return response
+    return render(request, "HomePage.html")
 
     
 def liffPage(request):
