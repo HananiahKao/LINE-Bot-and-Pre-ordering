@@ -34,7 +34,7 @@ The project is organized into several main directories and key files:
 
 This diagram represents the system-level architecture of the LINE Bot server.
 
-![System-Level C4 Graphic](https://raw.githubusercontent.com/HananiahKao/C4Graphic/refs/heads/main/C4GraphicOfLINEBotServer.drawio.svg?token=GHSAT0AAAAAAC4PNJONQB3PTEMY3FTAYQLGZ6BU3CA)
+![System-Level C4 Graphic](https://raw.githubusercontent.com/HananiahKao/C4Graphic/refs/heads/main/C4GraphicOfLINEBotServer.drawio.svg?token=GHSAT0AAAAAAC4PNJOMZWEII5HJJRUOMX5QZ73RXMQ)
 
 ## Contributing  
 
