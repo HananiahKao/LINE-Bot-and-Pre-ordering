@@ -1,29 +1,60 @@
-<html>
-    <head>
-        {% load static %}
-        <title>
-            Home
-        </title>
-        <!--<link href="{% static "HomePageStyle.css" %}" rel="stylesheet"/>-->
-        <style>
-            h1 {
-                font-size:120px;
-            }
-            img {
-                height:120px;
-                border-radius:30px;
-            }
-            div {
-                background-color:red
-            }
-        </style>
-    </head>
-    <body>
-        <div>
-            <img src="{% static "icon.webp" %}" atl="icon image..."/>
-            <h1>
-            Welcome!!{{viewerName}}
-            </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Brand Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ensure the page takes full height */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Scroll container */
+        .scroll-container {
+            height: 150vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        /* Image that will appear during scroll */
+        .brand-image {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* Scroll event effect */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="brand-image" id="brand-image">
+            <img src="{% static 'brand-image.png' %}" alt="Brand Image">
         </div>
-    </body>
+    </div>
+
+    <script>
+        // Wait for the page to load
+        window.addEventListener('scroll', function() {
+            const image = document.getElementById('brand-image');
+            const imagePosition = image.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight;
+
+            // If the image is in the viewport, reveal it with smooth transition
+            if (imagePosition < screenPosition) {
+                image.classList.add('reveal');
+            }
+        });
+    </script>
+</body>
 </html>
