@@ -23,7 +23,7 @@ def liffPage(request):
     return response
 
 def healthCheck(request):
-    get('https://the-pound-of-the-little-frogy.onrender.com')
+    get('https://xwt.onrender.com')
     print("I'm still alive!")
     return HttpResponse("I'm still alive!")
 
