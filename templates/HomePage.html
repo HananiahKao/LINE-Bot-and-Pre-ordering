@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Brand Homepage</title>
+    <title>小蛙塘</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* 1. Base reset */
+        /* Line 1: Basic layout and font reset */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            background-color: #000; /* black background to make white text stand out */
+            background-color: #000;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: white;
         }
 
-        /* 2. Container that gives scroll space */
+        /* Line 8: Layout for the scrolling page */
         .scroll-container {
             height: 200vh;
             display: flex;
@@ -24,23 +24,33 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
+            padding: 2rem;
         }
 
-        /* 3. Brand slogan and title styles */
+        /* Line 15: Slogan text style */
         .slogan {
             font-weight: 300;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.8;
-            margin-bottom: 0.5rem;
+            margin: 0;
         }
 
-        .main-title {
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
+        /* Line 20: Main title style */
+        h1.main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 1rem 0 0.5rem;
         }
 
-        /* 4. Brand image initial state */
+        /* Line 25: Engaging subtitle style */
+        h2.subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            color: #ddd;
+        }
+
+        /* Line 30: Brand image animation container */
         .brand-image {
             opacity: 0;
             transform: translateY(50px);
@@ -55,7 +65,7 @@
             display: block;
         }
 
-        /* 5. Reveal animation */
+        /* Line 40: Class to activate animation */
         .reveal {
             opacity: 1;
             transform: translateY(0);
@@ -64,9 +74,16 @@
 </head>
 <body>
     <div class="scroll-container">
-        <div class="slogan">les apprentis de la lumière</div>
-        <div class="main-title">Welcome to Our Brand</div>
+        <!-- Line 1: Brand slogan -->
+        <p class="slogan">les apprentis de la lumière</p>
 
+        <!-- Line 2: Brand title -->
+        <h1 class="main-title">小蛙塘</h1>
+
+        <!-- Line 3: Engaging subtitle -->
+        <h2 class="subtitle">Where young minds meet bright ideas.</h2>
+
+        <!-- Line 4: Image container -->
         <div class="brand-image" id="brand-image">
             {% load static %}
             <img src="{% static 'brand-image.PNG' %}" alt="Brand Image">
@@ -74,18 +91,18 @@
     </div>
 
     <script>
-        // Line 1: Add a scroll event listener when page is loaded
+        // Line 1: Scroll event to detect image reveal
         window.addEventListener('scroll', function() {
-            // Line 2: Get the image container
+            // Line 2: Grab the image element
             const image = document.getElementById('brand-image');
 
-            // Line 3: Calculate distance from top of viewport
+            // Line 3: Calculate image position
             const imagePosition = image.getBoundingClientRect().top;
 
-            // Line 4: Get current viewport height
+            // Line 4: Get viewport height
             const screenPosition = window.innerHeight;
 
-            // Line 5–7: If image is in view, add 'reveal' class to trigger animation
+            // Line 5: Reveal image when in view
             if (imagePosition < screenPosition) {
                 image.classList.add('reveal');
             }
