@@ -7,14 +7,16 @@
   {% load static %}
   <style>
     /* Line 1: Reset and prevent scroll */
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-
+    html {
+  scroll-behavior: smooth;
+}
     /* Line 7: Hero fills dynamic viewport height */
     .hero {
       width: 100vw;
