@@ -156,7 +156,8 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        observer.unobserve(entry.target); // Reveal only once
+      } else {
+        entry.target.classList.remove('active'); // Remove on scroll up
       }
     });
   }, {
