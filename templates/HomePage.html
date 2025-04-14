@@ -19,6 +19,7 @@
 }
     /* Line 7: Hero fills dynamic viewport height */
     .hero {
+      position: relative;
       width: 100vw;
       height: 100dvh;
       display: flex;
@@ -116,6 +117,26 @@
   opacity: 1;
   transform: translateY(0);
 }
+    .scroll-down-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: white;
+  animation: bounce 1.5s infinite;
+  opacity: 0.7;
+  cursor: default;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
   </style>
 </head>
 <body>
@@ -123,6 +144,9 @@
     <p class="slogan">les apprentis de la lumière</p>
     <h1 class="main-title">小蛙塘</h1>
     <h2 class="subtitle">Where young minds meet bright ideas.</h2>
+    <div class="scroll-down-indicator">
+    ↓
+    </div>
   </section>
   <section class="content-section">
   <div class="content-wrapper reveal">
