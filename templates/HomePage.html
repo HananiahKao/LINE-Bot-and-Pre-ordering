@@ -144,9 +144,9 @@
     <p class="slogan">les apprentis de la lumière</p>
     <h1 class="main-title">小蛙塘</h1>
     <h2 class="subtitle">Where young minds meet bright ideas.</h2>
-    <a href="#content" class="scroll-down-indicator">↓</a>
+    <div class="scroll-down-indicator">↓</div>
   </section>
-  <section id="content" class="content-section">
+  <section class="content-section">
   <div class="content-wrapper reveal">
     <h2>Who Are We?</h2>
     <p>小蛙塘 is a student-run brand that lets kids learn microeconomics by selling handmade products. We mix fun, creativity, and a touch of professionalism to make learning exciting for children and their parents.</p>
@@ -188,13 +188,13 @@
 
   reveals.forEach(reveal => observer.observe(reveal));
 </script>
- <!-- <script>
+ <script>
   document.querySelector('.scroll-down-indicator').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent the default anchor click behavior
     document.querySelector('#content').scrollIntoView({
       behavior: 'smooth'
     });
   });
-</script>-->
+</script>
 </body>
 </html>
