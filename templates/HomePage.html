@@ -195,6 +195,21 @@
       behavior: 'smooth'
     });
   });
+  const arrow = document.querySelector('.scroll-down-indicator');
+  const content = document.querySelector('#content');
+
+  const hideArrowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        arrow.style.display = 'none';
+        hideArrowObserver.disconnect(); // Stop observing after hiding
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  hideArrowObserver.observe(content);
 </script>
 </body>
 </html>
