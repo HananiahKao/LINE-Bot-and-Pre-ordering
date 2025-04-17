@@ -189,14 +189,15 @@
   reveals.forEach(reveal => observer.observe(reveal));
 </script>
  <script>
-  document.querySelector('.scroll-down-indicator').addEventListener('click', function(e) {
+  const arrow = document.querySelector('.scroll-down-indicator');
+  const content = document.querySelector('#content');
+  arrow.addEventListener('click', function(e) {
     e.preventDefault(); // Prevent the default anchor click behavior
-    document.querySelector('#content').scrollIntoView({
+    content.scrollIntoView({
       behavior: 'smooth'
     });
   });
-  const arrow = document.querySelector('.scroll-down-indicator');
-  const content = document.querySelector('#content');
+  
 
   const hideArrowObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
