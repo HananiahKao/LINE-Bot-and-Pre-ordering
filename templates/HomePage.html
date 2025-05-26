@@ -6,18 +6,16 @@
   <title>小蛙塘</title>
   {% load static %}
   <style>
-    /* Line 1: Reset and prevent scroll */
-  html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
     html {
-  scroll-behavior: smooth;
-}
-    /* Line 7: Hero fills dynamic viewport height */
+      scroll-behavior: smooth;
+    }
     .hero {
       position: relative;
       width: 100vw;
@@ -35,23 +33,27 @@
       padding: 2rem;
       box-sizing: border-box;
     }
-
-    /* Line 20: Slogan */
+    .language-selector {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      color: #fff;
+    }
     .slogan {
       font-weight: 300;
       font-size: 1.2rem;
       opacity: 0.85;
       margin: 0;
     }
-
-    /* Line 25: Main title */
     h1.main-title {
       font-size: 4rem;
       font-weight: 700;
       margin: 1rem 0 0.5rem;
     }
-
-    /* Line 30: Subtitle */
     h2.subtitle {
       font-size: 1.5rem;
       font-weight: 400;
@@ -59,158 +61,163 @@
       color: #eee;
     }
     .content-section {
-  background-color: #f5f5f5;
-  color: #222;
-  padding: 4rem 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-.content-wrapper {
-  max-width: 960px;
-  margin: auto;
-}
-
-.content-wrapper h2 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.grid-item h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  color: #0077cc;
-}
-
-.call-to-action {
-  text-align: center;
-  margin-top: 3rem;
-  font-style: italic;
-  color: #555;
-}
-
-/* Make grid horizontal on wide screens */
-@media (min-width: 768px) {
-  .grid {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .grid-item {
-    width: 30%;
-  }
-}
-    /* Reveal base style */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* When in view */
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+      background-color: #f5f5f5;
+      color: #222;
+      padding: 4rem 2rem;
+    }
+    .content-wrapper {
+      max-width: 960px;
+      margin: auto;
+    }
+    .content-wrapper h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .grid-item h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      color: #0077cc;
+    }
+    .call-to-action {
+      text-align: center;
+      margin-top: 3rem;
+      font-style: italic;
+      color: #555;
+    }
+    @media (min-width: 768px) {
+      .grid {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .grid-item {
+        width: 30%;
+      }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .scroll-down-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  color: white;
-  animation: bounce 1.5s infinite;
-  opacity: 0.7;
-  cursor: default;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translate(-50%, 0);
-  }
-  50% {
-    transform: translate(-50%, 10px);
-  }
-}
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: white;
+      animation: bounce 1.5s infinite;
+      opacity: 0.7;
+      cursor: default;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 10px); }
+    }
   </style>
 </head>
 <body>
   <section class="hero">
-    <p class="slogan">les apprentis de la lumière</p>
+    <select class="language-selector" id="languageSelect">
+      <option value="en">English</option>
+      <option value="zh">繁體中文</option>
+    </select>
+    <p class="slogan" data-en="les apprentis de la lumière" data-zh="光之學徒">les apprentis de la lumière</p>
     <h1 class="main-title">小蛙塘</h1>
-    <h2 class="subtitle">Where young minds meet bright ideas.</h2>
+    <h2 class="subtitle" data-en="Where young minds meet bright ideas." data-zh="年輕思維，創意碰撞。">Where young minds meet bright ideas.</h2>
     <div class="scroll-down-indicator">↓</div>
   </section>
+
   <section id="content" class="content-section">
-  <div class="content-wrapper reveal">
-    <h2>Who Are We?</h2>
-    <p>小蛙塘 is a student-run brand that lets kids learn microeconomics by selling handmade products. We mix fun, creativity, and a touch of professionalism to make learning exciting for children and their parents.</p>
+    <div class="content-wrapper reveal">
+      <h2 data-en="Who Are We?" data-zh="我們是誰？">Who Are We?</h2>
+      <p data-en="小蛙塘 is a student-run brand that lets kids learn microeconomics by selling handmade products. We mix fun, creativity, and a touch of professionalism to make learning exciting for children and their parents."
+         data-zh="小蛙塘是一個由學生經營的品牌，讓孩子透過銷售手作產品來學習個體經濟學。我們將樂趣、創意與專業融合，讓學習對孩子和家長都變得精彩有趣。">
+        小蛙塘 is a student-run brand that lets kids learn microeconomics by selling handmade products...
+      </p>
 
-    <div class="grid">
-      <div class="grid-item reveal">
-        <h3>What We’re All About?</h3>
-        <p>At 小蛙塘, we teach kids how to sell and promote handmade products while introducing them to basic economics. It’s all about hands-on learning, creativity, and having fun while discovering how the world of business works!</p>
+      <div class="grid">
+        <div class="grid-item reveal">
+          <h3 data-en="What We’re All About?" data-zh="我們的特色？">What We’re All About?</h3>
+          <p data-en="At 小蛙塘, we teach kids how to sell and promote handmade products while introducing them to basic economics. It’s all about hands-on learning, creativity, and having fun while discovering how the world of business works!"
+             data-zh="在小蛙塘，我們教孩子如何銷售與推廣自己的手作產品，同時學習經濟學的基本概念。學習透過動手做，充滿創意，也充滿樂趣！">
+            At 小蛙塘, we teach kids how to sell and promote handmade products...
+          </p>
+        </div>
+        <div class="grid-item reveal">
+          <h3 data-en="Our Fun & Fresh Look" data-zh="我們的風格">Our Fun & Fresh Look</h3>
+          <p data-en="Our style is a perfect mix of playful and polished! With clean, simple designs for our promotional materials, we make sure Xiaowadang looks fun and professional at the same time. Think of it as the best of both worlds!"
+             data-zh="我們的風格結合了活潑與洗鍊！透過簡潔有趣的設計，小蛙塘在視覺上既專業又不失童趣，是兩者完美的融合。">
+            Our style is a perfect mix of playful and polished!
+          </p>
+        </div>
+        <div class="grid-item reveal">
+          <h3 data-en="Learning Made Fun" data-zh="好玩又實用的學習">Learning Made Fun</h3>
+          <p data-en="We believe in learning by doing! Kids get to sell products, tell stories to promote them, and work together in groups. With guidance from teachers, they gain real-world skills in business, communication, and teamwork—all while having a blast."
+             data-zh="我們相信實作是最好的學習方式！孩子們會親自銷售產品、說故事行銷，還能與同伴合作。在老師指導下，他們將學會商業、溝通與團隊合作等實用技能，而且玩得超開心！">
+            We believe in learning by doing!
+          </p>
+        </div>
       </div>
-      <div class="grid-item reveal">
-        <h3>Our Fun & Fresh Look</h3>
-        <p>Our style is a perfect mix of playful and polished! With clean, simple designs for our promotional materials, we make sure Xiaowadang looks fun and professional at the same time. Think of it as the best of both worlds!</p>
-      </div>
-      <div class="grid-item reveal">
-        <h3>Learning Made Fun</h3>
-        <p>We believe in learning by doing! Kids get to sell products, tell stories to promote them, and work together in groups. With guidance from teachers, they gain real-world skills in business, communication, and teamwork—all while having a blast.</p>
+
+      <div class="call-to-action reveal">
+        <p data-en="Ready to begin the journey? Scroll on — there's more to explore."
+           data-zh="準備好啟程了嗎？繼續往下滑，還有更多精彩等著你。">
+          Ready to begin the journey? Scroll on — there's more to explore.
+        </p>
       </div>
     </div>
+  </section>
 
-    <div class="call-to-action reveal">
-      <p>Ready to begin the journey? Scroll on — there's more to explore.</p>
-    </div>
-  </div>
-</section>
   <script>
-  const reveals = document.querySelectorAll('.reveal');
+    // 滾動動畫
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(reveal => observer.observe(reveal));
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      } else {
-        entry.target.classList.remove('active'); // Remove on scroll up
-      }
+    // 點擊箭頭滾動
+    const arrow = document.querySelector('.scroll-down-indicator');
+    const content = document.querySelector('#content');
+    arrow.addEventListener('click', function(e) {
+      e.preventDefault();
+      content.scrollIntoView({ behavior: 'smooth' });
     });
-  }, {
-    threshold: 0.1
-  });
 
-  reveals.forEach(reveal => observer.observe(reveal));
-</script>
- <script>
-  const arrow = document.querySelector('.scroll-down-indicator');
-  const content = document.querySelector('#content');
-  arrow.addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent the default anchor click behavior
-    content.scrollIntoView({
-      behavior: 'smooth'
+    const hideArrowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          arrow.style.display = 'none';
+          hideArrowObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    hideArrowObserver.observe(content);
+
+    // 語言切換控制
+    const langSelect = document.getElementById('languageSelect');
+    langSelect.addEventListener('change', (e) => {
+      const lang = e.target.value;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.dataset[lang];
+      });
     });
-  });
-  
-
-  const hideArrowObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        arrow.style.display = 'none';
-        hideArrowObserver.disconnect(); // Stop observing after hiding
-      }
-    });
-  }, {
-    threshold: 0.3
-  });
-
-  hideArrowObserver.observe(content);
-</script>
+  </script>
 </body>
 </html>
